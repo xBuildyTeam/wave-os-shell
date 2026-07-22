@@ -25,16 +25,17 @@ pub fn create_tray(app: &App) -> Result<(), Box<dyn std::error::Error>> {
         .menu(&menu)
         .tooltip("Wave OS")
         .on_menu_event(|app, event| {
+            // Use fully qualified path — Manager trait not resolving in closure scope
             match event.id.as_ref() {
                 "open" => {
-                    if let Some(window) = app.get_webview_window("wave-os") {
+                    if let Some(window) = tauri::Manager::get_webview_window(app, "wave-os") {
                         let _ = window.show();
                         let _ = window.set_focus();
                     }
                 }
                 "windows" => { let _ = std::process::Command::new("explorer.exe").spawn(); }
                 "settings" => {
-                    if let Some(window) = app.get_webview_window("wave-os") {
+                    if let Some(window) = tauri::Manager::get_webview_window(app, "wave-os") {
                         let _ = window.show();
                         let _ = window.set_focus();
                         let _ = window.eval("window.location.hash = '#/settings';");
