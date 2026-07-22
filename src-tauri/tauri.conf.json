@@ -1,0 +1,56 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "Wave OS Shell",
+  "version": "1.0.0",
+  "identifier": "com.oswave.shell",
+  "build": {
+    "frontendDist": "../src"
+  },
+  "app": {
+    "windows": [
+      {
+        "label": "wave-os",
+        "url": "https://app.oswave.io",
+        "title": "Wave OS",
+        "width": 1920,
+        "height": 1080,
+        "maximized": true,
+        "decorations": false,
+        "resizable": true,
+        "fullscreen": false,
+        "shadow": false,
+        "skipTaskbar": false,
+        "alwaysOnTop": false
+      }
+    ],
+    "security": {
+      "csp": "default-src 'self' https://app.oswave.io https://*.base44.app https://*.oswave.io https://media.base44.com http://localhost:11434 https://*.thetaedgecloud.com https://*.ipfs.io data: blob:; style-src 'self' 'unsafe-inline' https://app.oswave.io https://*.base44.app; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://app.oswave.io https://*.base44.app; img-src 'self' data: blob: https:; connect-src 'self' https: http://localhost:11434 wss:; frame-src 'self' https://app.oswave.io https://*.base44.app"
+    },
+    "trayIcon": {
+      "id": "wave-tray",
+      "iconPath": "icons/icon-tray.png",
+      "tooltip": "Wave OS"
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": ["msi", "nsis"],
+    "icon": ["icons/icon.ico"],
+    "windows": {
+      "webviewInstallMode": {
+        "type": "downloadBootstrapper"
+      }
+    }
+  },
+  "plugins": {
+    "global-shortcut": {},
+    "notification": {},
+    "fs": {
+      "scope": ["$HOME/**", "$DOCUMENT/**", "$DOWNLOAD/**", "$DESKTOP/**"]
+    },
+    "updater": {
+      "pubkey": "",
+      "endpoints": ["https://oswave.io/updates/latest.json"]
+    }
+  }
+}
