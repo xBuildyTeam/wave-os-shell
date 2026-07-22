@@ -41,14 +41,6 @@ pub fn is_process_running(name: String) -> bool {
     }
 }
 
-/// Launch explorer.exe — NO #[tauri::command] (shell.rs has the command version)
-pub fn launch_explorer() -> Result<(), String> {
-    Command::new("explorer.exe")
-        .spawn()
-        .map_err(|e| format!("Failed to launch explorer: {}", e))?;
-    Ok(())
-}
-
 /// Launch Task Manager
 #[tauri::command]
 pub fn launch_task_manager() -> Result<(), String> {

@@ -1,5 +1,5 @@
 use serde::Serialize;
-use tauri::App;
+
 
 #[cfg(windows)]
 use winreg::enums::*;

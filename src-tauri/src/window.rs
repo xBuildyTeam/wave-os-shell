@@ -1,4 +1,4 @@
-use tauri::{App, AppHandle, Manager, WebviewWindow};
+use tauri::{App, AppHandle, Manager};
 
 /// Minimize to system tray
 #[tauri::command]
