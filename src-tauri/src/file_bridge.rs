@@ -1,7 +1,7 @@
 use tauri_plugin_dialog::DialogExt;
-use serde::Serialize;
+use serde::{Serialize, Deserialize};
 
-#[derive(Serialize)]
+#[derive(Serialize, Deserialize)]
 pub struct FileFilter {
     pub name: String,
     pub extensions: Vec<String>,

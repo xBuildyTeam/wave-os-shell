@@ -4,7 +4,7 @@ pub fn register_hotkeys(app: &App) -> Result<(), Box<dyn std::error::Error>> {
     use tauri_plugin_global_shortcut::GlobalShortcutExt;
 
     // Ctrl+Alt+W — Toggle Wave OS / Explorer
-    app.global_shortcut().on_shortcut("ctrl+alt+w", move |app, _shortcut| {
+    app.global_shortcut().on_shortcut("ctrl+alt+w", move |app, _shortcut, _event| {
         if let Some(window) = app.get_webview_window("wave-os") {
             if window.is_visible().unwrap_or(false) {
                 let _ = window.hide();
@@ -20,7 +20,7 @@ pub fn register_hotkeys(app: &App) -> Result<(), Box<dyn std::error::Error>> {
     })?;
 
     // Ctrl+Alt+S — Open Settings
-    app.global_shortcut().on_shortcut("ctrl+alt+s", move |app, _shortcut| {
+    app.global_shortcut().on_shortcut("ctrl+alt+s", move |app, _shortcut, _event| {
         if let Some(window) = app.get_webview_window("wave-os") {
             let _ = window.show();
             let _ = window.set_focus();

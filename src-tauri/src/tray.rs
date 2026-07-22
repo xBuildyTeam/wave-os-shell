@@ -20,8 +20,7 @@ pub fn create_tray(app: &App) -> Result<(), Box<dyn std::error::Error>> {
         &shell_app, &shell_replace, &sep3, &exit_item,
     ])?;
 
-    let _tray = TrayIconBuilder::new()
-        .id("wave-tray")
+    let _tray = TrayIconBuilder::with_id(app, "wave-tray")
         .icon(app.default_window_icon().unwrap().clone())
         .menu(&menu)
         .tooltip("Wave OS")
@@ -51,6 +50,6 @@ pub fn create_tray(app: &App) -> Result<(), Box<dyn std::error::Error>> {
                 _ => {}
             }
         })
-        .build(app)?;
+        .build()?;
     Ok(())
 }

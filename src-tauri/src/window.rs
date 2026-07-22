@@ -45,7 +45,7 @@ pub fn get_window_state(app: AppHandle) -> String {
 pub fn set_shell_mode(app: &App) -> Result<(), Box<dyn std::error::Error>> {
     if let Some(window) = app.get_webview_window("wave-os") {
         window.set_fullscreen(true)?;
-        window.set_maximized(true)?;
+        window.maximize()?;
         window.set_decorations(false)?;
         window.set_always_on_top(true)?;
         window.set_skip_taskbar(true)?;
@@ -57,7 +57,7 @@ pub fn set_shell_mode(app: &App) -> Result<(), Box<dyn std::error::Error>> {
 pub fn set_kiosk_mode(app: &App) -> Result<(), Box<dyn std::error::Error>> {
     if let Some(window) = app.get_webview_window("wave-os") {
         window.set_fullscreen(true)?;
-        window.set_maximized(true)?;
+        window.maximize()?;
         window.set_decorations(false)?;
         window.set_always_on_top(true)?;
         window.set_skip_taskbar(true)?;
