@@ -21,15 +21,10 @@ fn main() {
         .plugin(tauri_plugin_fs::init())
         .plugin(tauri_plugin_dialog::init())
         .plugin(tauri_plugin_shell::init())
-        .plugin(tauri_plugin_updater::Builder::new().build())
         .setup(|app| {
-            // Create the system tray
             tray::create_tray(app)?;
-
-            // Register global hotkeys
             hotkeys::register_hotkeys(app)?;
 
-            // Check if launched in shell mode
             let args: Vec<String> = std::env::args().collect();
             if args.iter().any(|a| a == "--shell") {
                 log::info!("Starting in Shell Mode");
@@ -41,7 +36,6 @@ fn main() {
                 log::info!("Starting in App Mode");
             }
 
-            // Inject the shell bridge into the webview
             if let Some(window) = app.get_webview_window("wave-os") {
                 window.eval(include_str!("../../src/shell-bridge.js"))?;
             }
@@ -49,34 +43,27 @@ fn main() {
             Ok(())
         })
         .invoke_handler(tauri::generate_handler![
-            // Shell management
             shell::get_shell_mode,
             shell::enable_shell_mode,
             shell::disable_shell_mode,
             shell::launch_explorer,
             shell::kill_explorer,
             shell::is_shell_mode,
-            // Process management
             process::spawn_process,
             process::kill_process,
             process::is_process_running,
-            process::launch_explorer,
             process::launch_task_manager,
-            // Auto-start
             autostart::enable_autostart,
             autostart::disable_autostart,
             autostart::get_autostart_status,
-            // Ollama
             ollama::check_ollama,
             ollama::start_ollama,
-            // File bridge
             file_bridge::pick_files,
             file_bridge::pick_folder,
             file_bridge::save_file,
             file_bridge::read_file,
             file_bridge::open_file,
             file_bridge::show_in_explorer,
-            // Window management
             window::minimize_to_tray,
             window::toggle_fullscreen,
             window::get_window_state,

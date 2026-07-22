@@ -7,6 +7,7 @@
     "frontendDist": "../src"
   },
   "app": {
+    "withGlobalTauri": true,
     "windows": [
       {
         "label": "wave-os",
@@ -28,14 +29,19 @@
     },
     "trayIcon": {
       "id": "wave-tray",
-      "iconPath": "icons/icon-tray.png",
+      "iconPath": "icons/icon.png",
       "tooltip": "Wave OS"
     }
   },
   "bundle": {
     "active": true,
-    "targets": ["msi", "nsis"],
-    "icon": ["icons/icon.ico"],
+    "targets": [
+      "msi",
+      "nsis"
+    ],
+    "icon": [
+      "icons/icon.ico"
+    ],
     "windows": {
       "webviewInstallMode": {
         "type": "downloadBootstrapper"
@@ -46,11 +52,12 @@
     "global-shortcut": {},
     "notification": {},
     "fs": {
-      "scope": ["$HOME/**", "$DOCUMENT/**", "$DOWNLOAD/**", "$DESKTOP/**"]
-    },
-    "updater": {
-      "pubkey": "",
-      "endpoints": ["https://oswave.io/updates/latest.json"]
+      "scope": [
+        "$HOME/**",
+        "$DOCUMENT/**",
+        "$DOWNLOAD/**",
+        "$DESKTOP/**"
+      ]
     }
   }
 }
