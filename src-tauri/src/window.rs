@@ -62,6 +62,5 @@ pub fn set_kiosk_mode(app: &App) -> Result<(), Box<dyn std::error::Error>> {
         window.set_always_on_top(true)?;
         window.set_skip_taskbar(true)?;
     }
-    // TODO: Install keyboard hooks for kiosk mode
     Ok(())
 }

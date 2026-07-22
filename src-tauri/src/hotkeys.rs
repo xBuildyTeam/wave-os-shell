@@ -1,4 +1,4 @@
-use tauri::App;
+use tauri::{App, Manager};
 
 pub fn register_hotkeys(app: &App) -> Result<(), Box<dyn std::error::Error>> {
     use tauri_plugin_global_shortcut::GlobalShortcutExt;
